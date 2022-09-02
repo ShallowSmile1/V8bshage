@@ -1,0 +1,8 @@
+﻿.flex-container {
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
+.flex-container > div {
+    margin: 7px;
+}

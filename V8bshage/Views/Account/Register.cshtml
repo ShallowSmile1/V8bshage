@@ -1,0 +1,82 @@
+﻿@model V8bshage.Models.RegisterViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Kodinger">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+</head>
+<body class="my-login-page">
+    <section class="h-100">
+        <div class="container h-100">
+            <div class="row justify-content-md-center h-100">
+                <div class="card-wrapper">
+                    <div class="card fat">
+                        <div class="card-body">
+                            <h4 class="card-title">Регистрация</h4>
+                            <form method="POST" class="my-login-validation" asp-controller="Account" asp-action="Register" enctype="multipart/form-data">
+                                <div asp-validation-summary="ModelOnly"></div>
+                                <div class="form-group">
+                                    <label asp-for="Name">Имя</label>
+                                    <input asp-for="Name" class="form-control">
+                                    <span asp-validation-for="Name"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="LastName">Фамилия</label>
+                                    <input asp-for="LastName" class="form-control">
+                                    <span asp-validation-for="LastName"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Vk">Вк</label>
+                                    <input asp-for="Vk" class="form-control">
+                                    <span asp-validation-for="Vk"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Telegram">Телеграм</label>
+                                    <input asp-for="Telegram" class="form-control">
+                                    <span asp-validation-for="Telegram"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Login">Логин</label>
+                                    <input asp-for="Login" class="form-control">
+                                    <span asp-validation-for="Login"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Password">Пароль</label>
+                                    <input asp-for="Password" class="form-control">
+                                    <span asp-validation-for="Password"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="PasswordConfirm">Повторите пароль</label>
+                                    <input asp-for="PasswordConfirm" class="form-control">
+                                    <span asp-validation-for="PasswordConfirm"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Photo, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        <input type="file" asp-for="Photo" accept=".png,.jpg,.jpeg" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group m-0">
+                                    <button type="submit" class="btn btn-primary btn-block">Регистрация</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

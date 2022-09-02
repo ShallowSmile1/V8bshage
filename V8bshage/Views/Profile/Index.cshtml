@@ -1,0 +1,67 @@
+﻿@model V8bshage.Models.ProfileViewModel
+@inject Microsoft.AspNetCore.Identity.UserManager<User> userManager
+
+
+<link href="css/profile.css" rel="stylesheet" />
+<link href="css/cards.css" rel="stylesheet" />
+<div class="container">
+    <div class="page-inner no-page-title">
+        <!-- start page main wrapper -->
+        <div id="main-wrapper">
+            <div class="row">
+                <div class="col-3">
+                    <div class="card card-white grid-margin">
+                        <div class="card-heading clearfix">
+                            <h4 class="card-title">Профиль</h4>
+                        </div>
+                        <div class="card-body user-profile-card mb-3">
+                            <img src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.User.Photo))" class="user-profile-image rounded-circle" />
+                            <h4 class="text-center h6 mt-2">@Model.User.Name</h4>
+                            <h4 class="text-center h6 mt-2">@Model.User.LastName</h4>
+                            <a class="btn btn-primary" asp-controller="Profile" asp-action="ChangeProfile" asp-route-id="@userManager.GetUserId(User)">Изменить профиль</a>
+                            <a class="btn btn-danger" asp-controller="Profile" asp-action="Logout">Выход</a>
+                        </div>
+                        <hr />
+                        <div class="card-heading clearfix mt-3">
+                            <h4 class="card-title">Контакты</h4>
+                        </div>
+                        <div class="card-body">
+                            <a href=@Model.User.Vk>
+                                <img src="img/vk.png" class="user-profile-image rounded-circle"/>
+                            </a>
+                            <a href=@Model.User.Telegram>
+                                <img src="img/tg.png" class="user-profile-image rounded-circle"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @if (Model.Advertisments.Count<Advertisement>() > 0)
+                {
+                    <div class="col-9 flex-container">
+                    @foreach (var advertisement in Model.Advertisments.Where(adv => adv.UserId == Model.User.Id))
+                    {
+                        <div class="card text-center" style="width: 18rem;">
+                            <img class="card-img-top" style="object-fit:contain; width:250px; height:250px" src="data:image/jpeg;base64,@(Convert.ToBase64String(advertisement.Photo))" />
+                            <div class="card-body">
+                                <h5 class="card-title">@advertisement.Title</h5>
+                                <p class="card-text">@advertisement.Description</p>
+                                <div class="w-100 btn-group" role="group">
+                                    <a asp-controller="Profile" asp-action="UpdateAdv" asp-route-Id="@advertisement.AdvId" class="btn btn-primary mx-1">Редактировать</a>
+                                    <a asp-controller="Profile" asp-action="RemoveAdv" asp-route-Id="@advertisement.AdvId" class="btn btn-danger mx-1">Удалить</a>
+                                </div>
+                            </div>
+                            <div class="card-footer text-muted">@advertisement.Price</div>
+                        </div>
+                    }
+                    </div>
+                }
+                else
+                {
+                    <div class="col-lg">
+                        <p>У вас ещё нет объявлений</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

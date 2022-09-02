@@ -1,0 +1,15 @@
+﻿@model V8bshage.Models.AdvInfoViewModel
+
+<link rel="stylesheet" src="css/profile" />
+
+<h1>@Model.Adv.Title</h1>
+<img class="card-img-top" style="object-fit:contain; width:200px; height:300px;" src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.Adv.Photo))" />
+<p>@Model.Adv.Description</p>
+<p>@Model.Adv.Price</p>
+
+<a href=@Model.User.Vk>
+    <img src="img/vk.png" class="user-profile-image rounded-circle" />
+</a>
+<a href=@Model.User.Telegram>
+    <img src="img/tg.png" class="user-profile-image rounded-circle" />
+</a>

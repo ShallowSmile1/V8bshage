@@ -1,0 +1,8 @@
+﻿@model V8bshage.Models.News
+
+<link rel="stylesheet" src="css/profile" />
+
+<h1>@Model.Title</h1>
+<img class="card-img-top" style="object-fit:contain; width:200px; height:300px;" src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.Photo))" />
+<p>@Model.Summary</p>
+<p>@Model.PostTime</p>
